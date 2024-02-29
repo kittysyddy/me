@@ -84,6 +84,13 @@ random_number=$((RANDOM % 100))
 github_key_lcn="$HOME/.ssh/github_main$random_number"
 github_email="30902737+kittysyddy@users.noreply.github.com"
 ssh-keygen -t ed25519 -f $github_key_lcn -N "" -C $github_email
+cat <<EOF >> $HOME/.gitconfig
+[user]
+    name = syd
+    email = 30902737+kittysyddy@users.noreply.github.com
+
+EOF
+
 
 # add new key to ssh config.
 # file will be created if it does not exist
