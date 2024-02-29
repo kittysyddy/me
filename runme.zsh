@@ -87,8 +87,7 @@ ssh-keygen -t ed25519 -f $github_key_lcn -N "" -C $github_email
 cat <<EOF >> $HOME/.gitconfig
 [user]
     name = syd
-    email = 30902737+kittysyddy@users.noreply.github.com
-
+    email = $github_email
 EOF
 
 
