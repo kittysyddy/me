@@ -1,0 +1,11 @@
+{
+    "ignored_packages":
+    [
+        "Vintage"
+    ],
+    "color_scheme": "Packages/Colorsublime - Themes/turnip.tmTheme",
+    "theme": "auto",
+    "font_size": 16,
+    "tab_size": 4,
+    "translate_tabs_to_spaces": true
+}

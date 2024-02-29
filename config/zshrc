@@ -1,0 +1,74 @@
+#########
+# shell #
+#########
+
+alias ll='ls -l'
+alias la='ls -al'
+alias history='fc -l 1' # longer history
+alias search='history | grep '
+alias art='$HOME/.art.txt' # for fun
+alias alias_list='alias | cut -d '=' -f 1 | sort'
+
+
+####################
+# docs & reference #
+####################
+
+alias ref_markdown='open https://github.com/google/styleguide/blob/gh-pages/docguide/style.md'
+alias ref_branching_github_flow='open https://web.archive.org/web/20171105002030/https://guides.github.com/introduction/flow/' # I'm weird for this one ig
+alias ref_aws_boto3_reference='open https://boto3.amazonaws.com/v1/documentation/api/latest/reference/core/boto3.html'
+alias ref_aws_tf='open https://registry.terraform.io/providers/hashicorp/aws/latest/docs'
+alias ref_aws_cf='open https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html'
+
+
+###############
+# zsh history #
+###############
+
+# `man zshparam`
+export HISTSIZE=1000000
+export SAVEHIST=500000
+
+# `man zshoptions` and/or https://zsh.sourceforge.io/Doc/Release/Options.html
+setopt HIST_EXPIRE_DUPS_FIRST # oldest history event that has a duplicate to be lost before losing a unique event 
+setopt HIST_SAVE_NO_DUPS # older commands that duplicate newer ones are omitted from savefiles
+setopt INC_APPEND_HISTORY # append to histfile before execution is finished
+setopt HIST_IGNORE_SPACE # ignore command when the first character on the line is a space
+
+
+##############
+# Virtualenv #
+##############
+# some shortcuts but also notes for me to remember the commands
+
+alias virtualenv='python3 -m venv my_env'
+alias venv='source my_env/bin/activate'
+alias venv_down='deactivate'
+alias venv_cleanup='rm -rf ./my_env'
+
+
+#######
+# git #
+#######
+
+alias gco="git checkout"
+alias gs="git status"
+alias gcom="git commit -m "
+alias ga="git add "
+alias gpush="git push origin "
+alias gpull="git pull origin "
+alias gsquash='git rebase -i HEAD~`git rev-list --count HEAD ^master`'
+
+# lil fxn to pull remote branches from a repo
+pull_new_branches() {
+     git fetch origin
+
+    # loop thru & checkout new branches
+    for branch in $(git branch -r); do
+        if [[ $branch != *"->"* ]]; then
+            branch_name=$(echo $branch | awk -F'/' '{print $2}')
+            git checkout -b $branch_name origin/$branch_name
+        fi
+    done
+}
+alias gpull_all='pull_new_branches'
