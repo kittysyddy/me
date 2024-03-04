@@ -2,11 +2,13 @@
 # shell #
 #########
 
+PROMPT='%~【ツ】✿ '
+
 alias ll='ls -l'
 alias la='ls -al'
 alias history='fc -l 1' # longer history
 alias search='history | grep '
-alias art='$HOME/.art.txt' # for fun
+alias art='cat $HOME/.art.txt' # for fun
 alias alias_list='alias | cut -d '=' -f 1 | sort'
 
 
@@ -41,7 +43,8 @@ setopt HIST_IGNORE_SPACE # ignore command when the first character on the line i
 ##############
 # some shortcuts but also notes for me to remember the commands
 
-alias virtualenv='python3 -m venv my_env'
+# alias virtualenv='python3 -m venv my_env'
+alias venv_up='virtualenv my_env'
 alias venv='source my_env/bin/activate'
 alias venv_down='deactivate'
 alias venv_cleanup='rm -rf ./my_env'
@@ -57,7 +60,7 @@ alias gcom="git commit -m "
 alias ga="git add "
 alias gpush="git push origin "
 alias gpull="git pull origin "
-alias gsquash='git rebase -i HEAD~`git rev-list --count HEAD ^master`'
+alias gsquash='git rebase -i HEAD~`git rev-list --count HEAD ^main`'
 
 # lil fxn to pull remote branches from a repo
 pull_new_branches() {
@@ -72,3 +75,4 @@ pull_new_branches() {
     done
 }
 alias gpull_all='pull_new_branches'
+
